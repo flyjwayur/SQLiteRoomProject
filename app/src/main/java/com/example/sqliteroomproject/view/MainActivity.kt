@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.example.sqliteroomproject.R
 import com.example.sqliteroomproject.model.User
 import com.example.sqliteroomproject.model.UserContact
@@ -19,19 +21,29 @@ import org.jetbrains.anko.uiThread
 class MainActivity : AppCompatActivity() {
 
     private lateinit var users:UserContact
+    private lateinit var userInputFrag: UserInputFragment
+    private lateinit var userListFrag: UserListFragment
+    private lateinit var fTransaction: FragmentTransaction
+    private lateinit var fManager: FragmentManager
+
+    var firstName:String? = null;
+    var lastName:String? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        val db = UserDB.get(this)
-        doAsync {
-            val id = db.userDao().insert(User(0, "HyeSoo", "Park" ))
-            uiThread{
-                TextView_user1.text = "Yes! $id"
-            }
-        }
+        userInputFrag = UserInputFragment()
+        userListFrag = UserListFragment()
+
+
+        fManager = supportFragmentManager
+        fTransaction = fManager.beginTransaction()
+        fTransaction.add(R.id.frag_container, userInputFrag)
+        fTransaction.add(R.id.frag_container, userListFrag)
+        fTransaction.commit()
+
 
         button2.setOnClickListener { view: View? ->
 
@@ -49,6 +61,28 @@ class MainActivity : AppCompatActivity() {
                 .setAction("Action", null).show()
         }
     }
+
+    fun insertUsers(firstName: String, lastName: String){
+        val db = UserDB.get(this)
+        doAsync {
+            val id = db.userDao().insert(User(0, firstName, lastName ))
+            uiThread{
+                TextView_user1.text = "Yes! $id"
+            }
+        }
+    }
+
+
+    fun displayUsers(){
+        val db = UserDB.get(this)
+        doAsync {
+            val id = db.userDao().insert(User(0, "HyeSoo", "Park" ))
+            uiThread{
+                TextView_user1.text = "Yes! $id"
+            }
+        }
+    }
+
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
