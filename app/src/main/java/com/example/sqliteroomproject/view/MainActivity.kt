@@ -2,6 +2,7 @@ package com.example.sqliteroomproject.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
@@ -9,25 +10,28 @@ import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.sqliteroomproject.R
 import com.example.sqliteroomproject.model.User
 import com.example.sqliteroomproject.model.UserContact
 import com.example.sqliteroomproject.model.UserDB
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.fragment_user_list.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var users:UserContact
+//    private lateinit var users:User
     private lateinit var userInputFrag: UserInputFragment
     private lateinit var userListFrag: UserListFragment
     private lateinit var fTransaction: FragmentTransaction
     private lateinit var fManager: FragmentManager
-
-    var firstName:String? = null;
-    var lastName:String? = null;
+//
+//    var firstName:String? = null;
+//    var lastName:String? = null;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,49 +44,26 @@ class MainActivity : AppCompatActivity() {
 
         fManager = supportFragmentManager
         fTransaction = fManager.beginTransaction()
-        fTransaction.add(R.id.frag_container, userInputFrag)
-        fTransaction.add(R.id.frag_container, userListFrag)
+        fTransaction.add(R.id.frag_container1, userInputFrag)
         fTransaction.commit()
 
-
-        button2.setOnClickListener { view: View? ->
-
-            val intent = Intent(this, ContactDetailActivity::class.java).apply {
-                putExtra(EXTRA, "Hello")
-            }
-
-            startActivity(intent)
-        }
-
+        fTransaction.add(R.id.frag_container2, userListFrag)
+        fTransaction.commit()
 
 //        recyclerView_usersList.adapter = UserAdapter()
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+
     }
 
     fun insertUsers(firstName: String, lastName: String){
         val db = UserDB.get(this)
+        Log.d("DBG", "Name : $firstName, $lastName")
         doAsync {
-            val id = db.userDao().insert(User(0, firstName, lastName ))
-            uiThread{
-                TextView_user1.text = "Yes! $id"
+             val id = db.userDao().insert(User(null, firstName, lastName ))
+            uiThread {
+
             }
         }
     }
-
-
-    fun displayUsers(){
-        val db = UserDB.get(this)
-        doAsync {
-            val id = db.userDao().insert(User(0, "HyeSoo", "Park" ))
-            uiThread{
-                TextView_user1.text = "Yes! $id"
-            }
-        }
-    }
-
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

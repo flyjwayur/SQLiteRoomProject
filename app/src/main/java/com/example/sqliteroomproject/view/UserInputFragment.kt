@@ -2,6 +2,7 @@ package com.example.sqliteroomproject.view
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +28,8 @@ class UserInputFragment : Fragment() {
             val firstName = textinput_firstname?.text.toString()
             val lastName = textinput_lastname?.text.toString()
             val addButton = view.findViewById<Button>(R.id.button_add)
+            Log.d("DBG", "firstname input: $firstName")
+
 
             addButton.setOnClickListener { view ->
                 var mainActivity = activity as MainActivity

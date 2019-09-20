@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".view.UserInputFragment">
 
@@ -22,6 +22,7 @@
             android:id="@+id/textinput_lastname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="text"
             android:hint="@string/last_name" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -35,6 +36,7 @@
             android:id="@+id/textinput_firstname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="text"
             android:hint="@string/first_name" />
 
     </com.google.android.material.textfield.TextInputLayout>
