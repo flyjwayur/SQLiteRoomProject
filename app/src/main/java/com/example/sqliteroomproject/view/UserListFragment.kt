@@ -9,9 +9,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.sqliteroomproject.R
 import com.example.sqliteroomproject.model.UserModel
+import kotlinx.android.synthetic.main.fragment_user_list.*
 
 /**
  * A simple [Fragment] subclass.
@@ -32,12 +32,17 @@ class UserListFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         val ump = ViewModelProviders.of(this).get(UserModel::class.java)
 
-        ump.getUsers().observe(this, Observer {
-            var mainActivity = activity as MainActivity
-            val recyclerViewUserList = view?.findViewById<RecyclerView>(R.id.recyclerView_userList)
+        // 4. You don't need to bind stuff in old Java way, with synthetic
+        // it is done automagically. Go Kotlin.
+        // 5. You don't need to pass the activity hosting this fragment to LinearLayoutManager
+        // Context is enough for that
+        recyclerView_userList.layoutManager = LinearLayoutManager(requireContext())
 
-            recyclerViewUserList?.layoutManager = LinearLayoutManager(mainActivity)
-            recyclerViewUserList?.adapter = UserAdapter(it.sortedBy {
+        ump.getUsers().observe(this, Observer {
+            // 6. Don't create the linearlayout again whenever there is a change.
+            // For that reason, I moved the layout manager initialisation outside of
+            // this block
+            recyclerView_userList.adapter = UserAdapter(it.sortedBy {
                 it.lastname}, context)
         })
 
