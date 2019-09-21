@@ -12,13 +12,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sqliteroomproject.R
 import com.example.sqliteroomproject.model.UserModel
-import kotlinx.android.synthetic.main.fragment_user_list.*
 
 /**
  * A simple [Fragment] subclass.
  */
 class UserListFragment : Fragment() {
 
+    // 3. Without specifying a layout (xml file), there is
+    // no way the app can display the list :D
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_user_list, container, false)
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
