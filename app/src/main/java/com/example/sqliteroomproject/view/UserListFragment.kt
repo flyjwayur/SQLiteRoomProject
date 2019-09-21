@@ -18,6 +18,8 @@ import kotlinx.android.synthetic.main.fragment_user_list.*
  */
 class UserListFragment : Fragment() {
 
+    private val adapter = UserAdapter()
+
     // 3. Without specifying a layout (xml file), there is
     // no way the app can display the list :D
     override fun onCreateView(
@@ -38,12 +40,13 @@ class UserListFragment : Fragment() {
         // Context is enough for that
         recyclerView_userList.layoutManager = LinearLayoutManager(requireContext())
 
+        recyclerView_userList.adapter = adapter
         ump.getUsers().observe(this, Observer {
             // 6. Don't create the linearlayout again whenever there is a change.
             // For that reason, I moved the layout manager initialisation outside of
             // this block
-            recyclerView_userList.adapter = UserAdapter(it.sortedBy {
-                it.lastname}, context)
+
+            adapter.users = it
         })
 
     }
