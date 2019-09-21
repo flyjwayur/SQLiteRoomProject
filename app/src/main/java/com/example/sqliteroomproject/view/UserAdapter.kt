@@ -1,7 +1,5 @@
 package com.example.sqliteroomproject.view
 
-
-import android.content.Context
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,7 +14,9 @@ import kotlinx.android.synthetic.main.contact_item.view.*
 const val EXTRA = "Extra"
 
 class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
-class UserAdapter(val users:List<User>, val context: Context?) : RecyclerView.Adapter<ContactViewHolder>(){
+
+// 7. context is not used at all in the adapter, better remove it
+class UserAdapter(val users:List<User>) : RecyclerView.Adapter<ContactViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
       return ContactViewHolder(
