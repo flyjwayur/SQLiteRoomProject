@@ -25,13 +25,16 @@ class UserInputFragment : Fragment() {
         // Inflate the layout for this fragment
 
         var view = inflater.inflate(R.layout.fragment_user_input, container, false)
-            val firstName = textinput_firstname?.text.toString()
-            val lastName = textinput_lastname?.text.toString()
             val addButton = view.findViewById<Button>(R.id.button_add)
-            Log.d("DBG", "firstname input: $firstName")
 
 
             addButton.setOnClickListener { view ->
+//                1. Access the texts only when the button is clicked
+//                Accessing them inside onCreateView will always return null
+//                because there is no input at the beginning
+
+                val firstName = textinput_firstname?.text.toString()
+                val lastName = textinput_lastname?.text.toString()
                 var mainActivity = activity as MainActivity
                 mainActivity.insertUsers(firstName, lastName)
             }

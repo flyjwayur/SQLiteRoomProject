@@ -45,8 +45,10 @@ class MainActivity : AppCompatActivity() {
         fManager = supportFragmentManager
         fTransaction = fManager.beginTransaction()
         fTransaction.add(R.id.frag_container1, userInputFrag)
-        fTransaction.commit()
 
+        // 2. commit the transaction only once. Otherwise, it throw an Exception
+        // You can always add 2 fragments (or more, or perform other stuff like removing a fragment)
+        // in the same transaction
         fTransaction.add(R.id.frag_container2, userListFrag)
         fTransaction.commit()
 
