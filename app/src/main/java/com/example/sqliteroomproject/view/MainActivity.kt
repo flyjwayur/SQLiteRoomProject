@@ -8,11 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sqliteroomproject.R
+import com.example.sqliteroomproject.model.ContactInfo
 import com.example.sqliteroomproject.model.User
 import com.example.sqliteroomproject.model.UserContact
 import com.example.sqliteroomproject.model.UserDB
@@ -56,14 +58,22 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun insertUsers(firstName: String, lastName: String){
+    fun insertUsers(firstName: String, lastName: String, phone: String, email: String){
         val db = UserDB.get(this)
         Log.d("DBG", "Name : $firstName, $lastName")
         doAsync {
              val id = db.userDao().insert(User(null, firstName, lastName ))
+            if(!phone.isEmpty()){
+                db.contactDao().insert(ContactInfo(id, "phone", phone))
+            }
+
+            if(!email.isEmpty()){
+                db.contactDao().insert(ContactInfo(id, "email", email ))
+            }
             uiThread {
 
             }
+            Toast.makeText(applicationContext, "new contact created", Toast.LENGTH_SHORT).show()
         }
     }
 

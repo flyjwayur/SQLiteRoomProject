@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_user_list.*
  */
 class UserListFragment : Fragment() {
 
-    private val adapter = UserAdapter()
+    private val adapter = UserAdapter(requireContext())
 
     // 3. Without specifying a layout (xml file), there is
     // no way the app can display the list :D

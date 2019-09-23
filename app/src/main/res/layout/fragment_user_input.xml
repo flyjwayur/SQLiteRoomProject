@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="320dp"
+    android:layout_margin="10dp"
     android:orientation="vertical"
     tools:context=".view.UserInputFragment">
 
@@ -14,20 +15,6 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textinputlayout_lastname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textinput_lastname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:hint="@string/last_name" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textinputlayout_firstname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -36,8 +23,54 @@
             android:id="@+id/textinput_firstname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:hint="@string/first_name"
             android:inputType="text"
-            android:hint="@string/first_name" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textinputlayout_lastname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textinput_lastname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/last_name"
+            android:inputType="text"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textinputlayout_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textinput_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone"
+            android:inputType="phone"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textinputlayout_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textinput_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -46,7 +79,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|top"
-        android:layout_weight="1"
         android:text="@string/add" />
 
 

@@ -13,17 +13,7 @@ data class User(
 }
 
 
-@Entity(foreignKeys = [(ForeignKey(
-    entity = User::class,
-    parentColumns= ["uid"],
-    childColumns = ["user"]))])
 
-data class ContactInfo(
-    val user:Long,
-    val type: String,
-    @PrimaryKey
-    val value: String
-)
 
 class UserContact{
     @Embedded

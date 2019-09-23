@@ -19,8 +19,4 @@ interface UserDao{
     fun getUserContacts(userid: Long): UserContact
 }
 
-@Dao
-interface ContactInfoDao{
-
-}
 

@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import kotlinx.android.synthetic.main.fragment_user_input.*
 import com.example.sqliteroomproject.R
-
+import com.example.sqliteroomproject.model.UserDB
 
 
 /**
@@ -35,8 +35,11 @@ class UserInputFragment : Fragment() {
 
                 val firstName = textinput_firstname?.text.toString()
                 val lastName = textinput_lastname?.text.toString()
+                val phone = textinput_email?.text.toString()
+                val email = textinput_phone?.text.toString()
+
                 var mainActivity = activity as MainActivity
-                mainActivity.insertUsers(firstName, lastName)
+                mainActivity.insertUsers(firstName, lastName, phone, email)
             }
 
         //main_activity.supportFragmentManager.popBackStack()
